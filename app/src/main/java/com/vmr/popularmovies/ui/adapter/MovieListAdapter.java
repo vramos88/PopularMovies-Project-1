@@ -23,11 +23,17 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     private List<Movie> mMovieList = new ArrayList<>();
     private LayoutInflater mInflater;
     private Context mContext;
+    private MovieListListener mListener;
 
-    public MovieListAdapter(Context context, List<Movie> list){
+    public interface MovieListListener{
+        void onMovieSelected(Movie movie);
+    }
+
+    public MovieListAdapter(Context context, List<Movie> list, MovieListListener listener){
         mInflater = LayoutInflater.from(context);
         mMovieList = list;
         mContext = context;
+        mListener = listener;
     }
 
     public void updateList(List<Movie> list){
@@ -55,14 +61,19 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
         return mMovieList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivThumbnail;
 
         public ViewHolder(View view) {
             super(view);
             ivThumbnail = (ImageView)view.findViewById(R.id.ivThumbnail);
+            ivThumbnail.setOnClickListener(this);
         }
 
 
+        @Override
+        public void onClick(View view) {
+            mListener.onMovieSelected(mMovieList.get(getAdapterPosition()));
+        }
     }
 }

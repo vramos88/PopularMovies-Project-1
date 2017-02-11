@@ -1,5 +1,7 @@
 package com.vmr.popularmovies.api.client;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -47,6 +49,15 @@ public class MovieFetchAsync extends AsyncTask<Void,Void,List<Movie>> {
     public void sortSearch(String sortBy){
         mSortBy = sortBy;
         execute();
+    }
+
+
+
+
+    @Override
+    protected void onPreExecute() {
+
+
     }
 
     @Override
