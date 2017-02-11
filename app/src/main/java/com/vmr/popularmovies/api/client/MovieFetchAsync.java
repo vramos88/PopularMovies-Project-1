@@ -33,7 +33,7 @@ public class MovieFetchAsync extends AsyncTask<Void,Void,List<Movie>> {
     private MovieFetchListener mListener;
 
     private String BASE_URL = "http://api.themoviedb.org/3/movie/";
-    private String API_KEY = "7ddc0f922272658862a9feb2065d0d7c";
+    private String API_KEY = ""; // themoviedb API key
     private String PARAM_API_KEY = "api_key";
 
 
